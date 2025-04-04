@@ -25,8 +25,7 @@ export KEY_PASSWORD=your_key_password
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/johnnybal/qqq.git
-   cd qqq/android-app
+   git clone https://github.com/johnnybal/lengleng-android.git
    ```
 
 2. Configure Firebase:
