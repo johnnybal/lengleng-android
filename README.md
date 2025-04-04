@@ -4,9 +4,9 @@ This document explains how to deploy the LengLeng Android app for different envi
 
 ## Prerequisites
 
-- Android Studio
-- Android SDK
-- Gradle
+- Android Studio Hedgehog | 2023.1.1 or later
+- Android SDK 34 (Android 14)
+- Gradle 8.0 or later
 - ADB (Android Debug Bridge)
 - Keystore file for signing release builds
 - Git
@@ -20,6 +20,23 @@ export KEYSTORE_PASSWORD=your_keystore_password
 export KEY_ALIAS=your_key_alias
 export KEY_PASSWORD=your_key_password
 ```
+
+## Setup
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/johnnybal/qqq.git
+   cd qqq/android-app
+   ```
+
+2. Configure Firebase:
+   - Place your `google-services.json` file in the `app` directory
+   - Update Firebase configuration in `app/build.gradle`
+
+3. Build the project:
+   ```bash
+   ./gradlew build
+   ```
 
 ## Deployment Scripts
 
@@ -72,6 +89,39 @@ To also upload to Google Play Console:
 ./deploy-prod.sh --upload
 ```
 
+## Features
+
+### Core Features
+- User authentication
+- Poll creation and voting
+- Real-time notifications
+- Social connections
+- Profile management
+
+### Technical Features
+- Firebase integration
+- Material Design 3
+- Jetpack Compose
+- Kotlin Coroutines
+- Room Database
+- WorkManager
+
+## Dependencies
+
+- Firebase BoM 32.7.0
+  - Firebase Auth
+  - Firebase Firestore
+  - Firebase Cloud Messaging
+  - Firebase Analytics
+- AndroidX
+  - Compose 1.5.0
+  - Navigation 2.7.0
+  - Room 2.6.0
+  - WorkManager 2.9.0
+- Kotlin 1.9.0
+- Coroutines 1.7.3
+- Material Design 3 1.1.1
+
 ## GitHub Integration
 
 ### Initial Setup
@@ -98,60 +148,40 @@ This will:
 4. Commit changes with timestamp
 5. Push to the main branch
 
-### Important Notes
-
-- The `.gitignore` file excludes sensitive information like keystore files and build artifacts
-- Never commit the following files:
-  - `keystore/release.keystore`
-  - `google-services.json`
-  - Any API keys or secrets
-
-## Build Types
-
-- **Debug**: For development and testing
-- **Release**: For staging and production
-
-## Product Flavors
-
-- **dev**: Development environment
-- **staging**: Staging environment
-- **prod**: Production environment
-
-## Output Files
-
-### Development
-- `app/build/outputs/apk/dev/debug/app-dev-debug.apk`
-
-### Staging
-- `deploy/staging/app-staging-release.apk`
-- `deploy/staging/app-staging-release.apk.sha256`
-
-### Production
-- `deploy/prod/app-prod-release.apk`
-- `deploy/prod/app-prod-release.aab`
-- `deploy/prod/app-prod-release.apk.sha256`
-- `deploy/prod/app-prod-release.aab.sha256`
-- `deploy/prod/version.txt`
-
 ## Troubleshooting
 
+### Common Issues
+
 1. **Build Fails**
-   - Check if all environment variables are set
-   - Verify keystore file exists and is valid
-   - Check Gradle version compatibility
+   - Check Android Studio version
+   - Verify Gradle version
+   - Clean and rebuild project
 
-2. **Installation Fails**
-   - Ensure device is connected and authorized
-   - Check if previous version is uninstalled
-   - Verify sufficient storage space
+2. **Firebase Issues**
+   - Verify google-services.json
+   - Check Firebase console
+   - Ensure proper SHA-1/SHA-256 fingerprints
 
-3. **App Crashes**
-   - Check logcat for error messages
-   - Verify Firebase configuration
-   - Ensure all required permissions are granted
+3. **Deployment Issues**
+   - Check keystore configuration
+   - Verify environment variables
+   - Ensure proper signing configuration
 
-4. **Git Push Fails**
-   - Verify GitHub credentials
-   - Check internet connection
-   - Ensure repository URL is correct
-   - Make sure you have write access to the repository 
+### Getting Help
+
+If you encounter any issues not covered here:
+1. Check the build logs
+2. Review Firebase console
+3. Contact the development team
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details. 
